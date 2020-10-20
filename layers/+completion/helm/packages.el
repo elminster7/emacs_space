@@ -18,6 +18,7 @@
         helm-ag
         helm-descbinds
         helm-flx
+        helm-evil-markers
         (helm-ls-git :require git)
         helm-make
         helm-mode-manager
@@ -389,6 +390,7 @@
 (defun helm/init-helm-swoop ()
   (use-package helm-swoop
     :defer (spacemacs/defer)
+    :bind ("C-h s" . helm-swoop)
     :init
     (progn
       (setq helm-swoop-split-with-multiple-windows t
@@ -423,6 +425,13 @@
       (defadvice helm-swoop (before add-evil-jump activate)
         (evil-set-jump)))))
 
+(defun helm/init-helm-evil-marker ()
+  (use-package helm-evil-markers
+    :defer t
+    :bind ("C-c e" 'helm-evil-markers)
+    ("C-c m" 'helm-evil-markers-set)
+    )
+  )
 (defun helm/init-helm-themes ()
   (use-package helm-themes
     :defer t
