@@ -22,6 +22,7 @@
         git-messenger
         git-timemachine
         golden-ratio
+        counsel
         (helm-git-grep :requires helm)
         (helm-gitignore :requires helm)
         magit
@@ -325,3 +326,11 @@
      (expand-file-name "transient/values.el" spacemacs-cache-directory)
      transient-history-file
      (expand-file-name "transient/history.el" spacemacs-cache-directory))))
+
+(defun git/init-counsel ()
+  (use-package counsel
+    :defer t
+    :init (bind-key "C-c g" 'counsel-git)
+    (bind-key "C-c j" 'counsel-git-grep)
+    (bind-key "C-b" 'counsel-buffer-or-recentf)
+    ))
